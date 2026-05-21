@@ -1,5 +1,14 @@
 # Projet ISN - Agence de voyage
 
+Nous avons entrepris de créer un "kit de voyage" permattant de préparer à votre place vos visites en fonctions de vos goûts et de la durée du voyage. Il organise l'ensemble du voyage, du transport aux activités, en passant par l'hôtel.
+
+## Installation
+Afin  d'utiliser le programme, il faut télécharger les librairies suivantes :
+
+
+## Utilisation
+
+Pour utiliser l'application, rien de plus simple : il suffit de démarrer le programme Main.py.
 
 
 ## Getting started
