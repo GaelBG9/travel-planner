@@ -30,7 +30,7 @@ class Points_Interets:
         for ligne, colonne in gdf.head(20).iterrows():
             nom = colonne.get("name")
             if isinstance (nom, str): 
-                hotels = [{'Nom hôtel' : nom, 'Latitude' : colonne.geometry.centroid.x , 'Longitude' : colonne.geometry.centroid.y }]
+                hotels.append({'Nom hôtel' : nom, 'Latitude' : colonne.geometry.centroid.x , 'Longitude' : colonne.geometry.centroid.y })
         return hotels
         
          
