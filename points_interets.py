@@ -1,55 +1,57 @@
-#!/usr/bin/env python3
-# -*- coding: utf-8 -*-
-"""
-Created on Thu Apr 23 08:08:03 2026
+class ModelePointsInteret:
 
-@author: radelgadoca
-"""
-import osmnx as ox
-
-CATEGORIES_ACTIVITES = {
-    "Culture (Musées...)": {"tourism": ["museum", "artwork", "gallery"]},
-    "Monuments": {"tourism": ["attraction", "viewpoint", "monument"]},
-        "Parcs & Loisirs": {"leisure": ["park", "garden", "theme_park"]},
-    "Gastronomie": {"amenity": ["restaurant", "cafe"]}
-}
-
-class Points_Interets:
-    """
-    Fait la recherche de points d'interets possibles dans une ville donné
-    """
-    def __init__(self, liste_activites):
-        self.liste_activites = liste_activites
-        
     def chercher_hotels(self, ville):
-        """
-        Cherche les hôtels dans une ville et renvoie une liste des possibilités.
-        """
-        gdf = ox.features_from_place(f"{ville}, France", tags={"tourism": "hotel"}) 
-        hotels = []
-        for ligne, colonne in gdf.head(20).iterrows():
-            nom = colonne.get("name")
-            if isinstance (nom, str): 
-                hotels.append({'Nom hôtel' : nom, 'Latitude' : colonne.geometry.centroid.x , 'Longitude' : colonne.geometry.centroid.y })
-        return hotels
-        
-         
-    def chercher_activites(self, ville, categories_liste):
-        """
-        Renvoie une liste d'activites precedemment filtre selon les categories choisies par l'utilisateur
-        """
+        try:
+            gdf = ox.features_from_place(f"{ville}, France", tags={"tourism": "hotel"}) #ce sont les hotels de la ville 
+            hotels = []
+            # On convertit le tableau OSMnx en liste Python classique
+            liste_hotels = list(gdf.head(20).iterrows())
+
+# itterrows prmet d"extraire les données sous forme de de tuple avec le numéro de ligne et le contenu de la ligne en l"occurence les infos de l"hotel 
+            for i in range(len(liste_hotels)):
+                numero_ligne, lieu = liste_hotels[i]
+                nom = lieu.get("name")
+                if nom is not None:
+                    hotels.append({
+                        "nom": nom,
+                        "lat": lieu.geometry.centroid.y,
+                        # lieu est un instance de classe on récupère geometry qui est sont coordonnées 
+                        #POLYGON((4.831 45.764, 4.832 45.764, 4.832 45.765, 4.831 45.765, ...)) par exemple
+                        "lon": lieu.geometry.centroid.x})
+            return hotels
+        except:
+            return []
+
+    def chercher_activites(self, ville, categories_list):
         activites = []
-        for categorie in categories_liste:
-            tags = CATEGORIES_ACTIVITES.get(categorie)
-            gdf = ox.features_from_place(f"{ville}, France", tags=tags)
-            for ligne, colonne in gdf.head(8).iterrows():
-                nom = colonne.get("name")
-                if isinstance(nom, str):
-                    activites.append({"Nom activité": nom,"lat": colonne.geometry.centroid.y, "lon": colonne.geometry.centroid.x, "cat": categorie })
+        for cat_name in categories_list:
+            nom_categorie = CATEGORIES_ACTIVITES.get(cat_name)
+            try:
+                gdf = ox.features_from_place(f"{ville}, France", tags=nom_categorie)
+                for ligne, colonne in gdf.head(8).iterrows():
+                    nom = colonne.get("name")
+                    if isinstance(nom, str):
+                        activites.append({
+                            "nom": nom,
+                            "lat": colonne.geometry.centroid.y,
+                            "lon": colonne.geometry.centroid.x,
+                            "cat": cat_name
+                        })
+                        #la même que expliquait juste avant mais avec les activités et pas les hotels 
+            except:
+                continue
         return activites
 
-gdf = ox.features_from_place(f"Paris, France", tags={"tourism": "hotel"})
-print(gdf)
+    def obtenir_coordonnees_ville(self, ville):
+        # Nécessaire pour centrer la carte sur la ville de destination
+        try:
+            ville = ox.geocode_to_gdf(f"{ville}, France") 
+            #iloc permet dans l"instance de classe de ville de GeodataFrame d"avoir la première ligne qui est la pricipale car si on prend les lignes après ça peut être des quartiers ou arrondissement 
+            lat = ville.iloc[0].geometry.centroid.y #permet de mettre en x la ville au centre de la map
+            lon = ville.iloc[0].geometry.centroid.x
+            return lat, lon
+        except:
+            return None, None
             
         
         
