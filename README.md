@@ -8,7 +8,7 @@ Afin  d'utiliser le programme, il faut télécharger les librairies suivantes :
 
 ## Utilisation
 
-Pour utiliser l'application, rien de plus simple : il suffit de démarrer le programme Main.py.
+Pour utiliser l'application, rien de plus simple : il suffit de démarrer le programme Main.py. Grâce à l'interface graphique, les différentes étapes sont explicités. 
 
 
 ## Getting started
