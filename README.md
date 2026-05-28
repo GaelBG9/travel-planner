@@ -1,6 +1,8 @@
 # Projet ISN - Agence de voyage
 
-Nous avons entrepris de créer un "kit de voyage" permattant de préparer à votre place vos visites en fonctions de vos goûts et de la durée du voyage. Il organise l'ensemble du voyage, du transport aux activités, en passant par l'hôtel.
+Nous avons entrepris de créer un "kit de voyage" permettant de préparer à votre place vos vacances. Il organise l'ensemble du voyage, du transport aux activités, en passant par l'hôtel. Vous choisisez les dates et les villes de départ et d'arrivée, le type d'activité que vous souhaitez faire et l'application vous prépare votre voyage en fonctions de vos goûts et de la durée de vos vacances.
+
+Nous avons réalisé ce projet dans le cadre de l'ISN : il s'agit d'un projet sur 5 séances. Celui-ci n'est donc pas parfait notamment au niveau de la durée des requêtes : nous vous demandons donc d'être patient. 
 
 ## Installation
 Afin  d'utiliser le programme, il faut télécharger les librairies suivantes :
