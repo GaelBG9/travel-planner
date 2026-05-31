@@ -7,7 +7,7 @@ Nous avons réalisé ce projet dans le cadre de l'ISN : il s'agit d'un projet su
 ## Mise en route
 ### Installation
 Cloner le dépôt ou copier les fichiers dans un même dossier. L'application nécessite plusieurs bibliothèques. Dans un terminal, exécuter :
-pip install customtkinter tkintermapview requests osmnx pillow
+pip install customtkinter tkintermapview requests osmnx pillow pandas
 ### Photos des villes (optionnel)
 Pour afficher des photos sur la page d'accueil, placer des fichiers .jpg nommés exactement comme les villes dans le même dossier que les scripts :
 Paris.jpg, Lyon.jpg, Marseille.jpg, Nice.jpg, Bordeaux.jpg ...
