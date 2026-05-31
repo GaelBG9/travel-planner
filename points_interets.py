@@ -4,6 +4,22 @@ from config import CATEGORIES_ACTIVITES
 class ModelePointsInteret:
 
     def chercher_hotels(self, ville):
+        '''
+        Recherche les hôtels d'une ville à travers OpenStreetMap.
+
+        Parameters
+        ----------
+        ville : string
+            Nom de la ville à rechercher
+
+        Returns
+        -------
+        hotels : Liste de dictionnaires
+            Liste d'hôtels contenant des dictionnaires où chacun a:
+                - "nom" (str) : Nom de l'hôtel.
+                - "lat" (float) : Latitude du centroïde.
+                - "lon" (float) : Longitude du centroïde.
+        '''
         gdf = ox.features_from_place(f"{ville}, France", tags={"tourism": "hotel"})
         hotels = []
         liste_hotels = list(gdf.head(20).iterrows())
@@ -30,6 +46,8 @@ class ModelePointsInteret:
             ville = ox.geocode_to_gdf(f"{ville}, France") 
             lat = ville.iloc[0].geometry.centroid.y
             lon = ville.iloc[0].geometry.centroid.x
-            return lat, lon        
+            return lat, lon       
+        
+print(chercher_hotels(Paris))
     
         
