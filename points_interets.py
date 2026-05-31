@@ -14,11 +14,11 @@ class ModelePointsInteret:
 
         Returns
         -------
-        hotels : Liste de dictionnaires
+        hotels : liste de dictionnaires
             Liste d'hôtels contenant des dictionnaires où chacun a:
-                - "nom" (str) : Nom de l'hôtel.
-                - "lat" (float) : Latitude du centroïde.
-                - "lon" (float) : Longitude du centroïde.
+                - "nom" (str) : nom de l'hôtel.
+                - "lat" (float) : latitude du centroïde.
+                - "lon" (float) : longitude du centroïde.
         '''
         gdf = ox.features_from_place(f"{ville}, France", tags={"tourism": "hotel"})
         hotels = []
@@ -32,6 +32,26 @@ class ModelePointsInteret:
             return hotels
 
     def chercher_activites(self, ville, categories_list):
+        '''
+        Recherche les activités d'une ville selon une liste de catégories.
+
+        Parameters
+        ----------
+        ville : string
+            Nom de la ville à rechercher.
+        categories_list : liste de string
+            Liste de catégories d'activités correspondant aux clés de CATEGORIES_ACTIVITES.
+
+        Returns
+        -------
+        activites : liste de dictionnaires
+            Liste d'activités, chaque dictionnaire contient :
+                - "nom" (str)   : nom du lieu.
+                - "lat" (float) : latitude du centroïde.
+                - "lon" (float) : longitude du centroïde.
+                - "cat" (str)   : catégorie de l'activité.
+
+        '''
         activites = []
         for categorie in categories_list:
             nom_categorie = CATEGORIES_ACTIVITES.get(categorie)
