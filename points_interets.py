@@ -31,7 +31,7 @@ class ModelePointsInteret:
                 hotels.append({"nom": nom, "lat": lieu.geometry.centroid.y, "lon": lieu.geometry.centroid.x})
             return hotels
 
-    def chercher_activites(self, ville, categories_list):
+    def chercher_activites(self, ville, categories_liste):
         '''
         Recherche les activités d'une ville selon une liste de catégories.
 
@@ -39,7 +39,7 @@ class ModelePointsInteret:
         ----------
         ville : string
             Nom de la ville à rechercher.
-        categories_list : liste de string
+        categories_liste : liste de string
             Liste de catégories d'activités correspondant aux clés de CATEGORIES_ACTIVITES.
 
         Returns
@@ -53,7 +53,7 @@ class ModelePointsInteret:
 
         '''
         activites = []
-        for categorie in categories_list:
+        for categorie in categories_liste:
             nom_categorie = CATEGORIES_ACTIVITES.get(categorie)
             gdf = ox.features_from_place(f"{ville}, France", tags=nom_categorie)
             for ligne, colonne in gdf.head(8).iterrows():
@@ -63,10 +63,24 @@ class ModelePointsInteret:
         return activites
 
     def obtenir_coordonnees_ville(self, ville):
-            ville = ox.geocode_to_gdf(f"{ville}, France") 
-            lat = ville.iloc[0].geometry.centroid.y
-            lon = ville.iloc[0].geometry.centroid.x
-            return lat, lon       
+        '''
+        Retourne les coordonnées géographiques du centre d'une ville.
+
+        Parameters
+        ----------
+        ville : string
+            Nom de la ville à géocoder.
+
+        Returns
+        -------
+        tuple[float, float]: Latitude et longitude du centroïde de la ville
+
+        ''' 
+        ville = ox.geocode_to_gdf(f"{ville}, France") 
+        lat = ville.iloc[0].geometry.centroid.y
+        lon = ville.iloc[0].geometry.centroid.x
+        return lat, lon   
+    
         
 print(chercher_hotels(Paris))
     
