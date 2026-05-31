@@ -5,13 +5,13 @@ Nous avons entrepris de créer un "kit de voyage" permettant de préparer à vot
 Nous avons réalisé ce projet dans le cadre de l'ISN : il s'agit d'un projet sur 5 séances. Celui-ci n'est donc pas parfait notamment au niveau de la durée des requêtes : nous vous demandons donc d'être patient. 
 
 ## Mise en route
-# Installation
+### Installation
 Cloner le dépôt ou copier les fichiers dans un même dossier. L'application nécessite plusieurs bibliothèques. Dans un terminal, exécuter :
 pip install customtkinter tkintermapview requests osmnx pillow
-# Photos des villes (optionnel)
+### Photos des villes (optionnel)
 Pour afficher des photos sur la page d'accueil, placer des fichiers .jpg nommés exactement comme les villes dans le même dossier que les scripts :
 Paris.jpg, Lyon.jpg, Marseille.jpg, Nice.jpg, Bordeaux.jpg ...
-# Exécution de l'application
+### Exécution de l'application
 Dans le dossier du projet, exécuter simplement :
 python main.py
 
