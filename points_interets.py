@@ -1,3 +1,6 @@
+import osmnx as ox
+from config import CATEGORIES_ACTIVITES
+
 class ModelePointsInteret:
 
     def chercher_hotels(self, ville):

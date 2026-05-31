@@ -57,6 +57,20 @@ class Voyage:
             f"jour{n}": {
                 "train_retour": f"Départ de {self.ville_arrivee} à {self.train_retour[0]}, arrivée à {self.train_retour[1]} à {self.ville_depart}"}}
         it.append(dernierjour)
+        
+    def calculer_distance(self, p1, p2):
+        if not p1 or not p2:
+            return 0
+
+        R = 6371  # rayon de la Terre en km
+
+        lat1, lat2 = math.radians(p1[0]), math.radians(p2[0])
+        diff_lat  = math.radians(p2[0] - p1[0])
+        diff_lon  = math.radians(p2[1] - p1[1])
+
+        a = (math.sin(diff_lat / 2) ** 2 + math.cos(lat1) * math.cos(lat2)* math.sin(diff_lon / 2) ** 2)
+
+        return R * 2 * math.atan2(math.sqrt(a), math.sqrt(1 - a))
             
         
             
