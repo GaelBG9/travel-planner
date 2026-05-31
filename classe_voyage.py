@@ -1,7 +1,14 @@
 import math
+
+
 class ModeleVoyage:
+    """Modèle de données centralisant l'état et l'organisation logique du voyage.
+
+    Contient les informations sélectionnées par l'utilisateur (trains, hôtel, activités) et contient les algorithmes de calcul de distances, d'optimisation de parcours et de génération d'itinéraires.
+    """
 
     def __init__(self):
+        """Initialise l'ensemble des variables nécessaires au suivi du voyage."""
         self.ville_dep = "Paris"
         self.ville_arr = "Lyon"
         self.train_aller = None
@@ -14,7 +21,17 @@ class ModeleVoyage:
         self.lon_ville = 0
 
     def calculer_distance(self, p1, p2):
-        # Formule de Haversine pour calculer la distance en km entre deux points GPS
+        """Calcule la distance à vol d'oiseau entre deux coordonnées GPS.
+
+        Utilise la formule de Haversine pour prendre en compte la courbure terrestre.
+
+        Args:
+            p1 (tuple[float, float]): Coordonnées (lat, lon) du premier point.
+            p2 (tuple[float, float]): Coordonnées (lat, lon) du second point.
+
+        Returns:
+            float: La distance calculée en kilomètres.
+        """
         if not p1 or not p2:
             return 0
         R = 6371
@@ -25,7 +42,16 @@ class ModeleVoyage:
         return R * 2 * math.atan2(math.sqrt(a), math.sqrt(1 - a))
 
     def optimiser_parcours(self, liste_activites):
-        # Algorithme du voisin le plus proche : à chaque étape on choisit l'activité la plus proche
+        """Trie et réorganise une liste d'activités selon la proximité géographique.
+
+        Applique la méthode heuristique du "voisin le plus proche" à partir de l'adresse de l'hôtel pour réduire le temps global de transport.
+
+        Args:
+            liste_activites (list[dict]): Liste brute des activités à trier.
+
+        Returns:
+            list[dict]: Une nouvelle liste d'activités ordonnée de façon optimale.
+        """
         if not liste_activites:
             return []
 
@@ -50,7 +76,16 @@ class ModeleVoyage:
         return triees
 
     def construire_planning(self, activites):
-        # Répartit les activités en journées de 3 maximum
+        """Répartit de façon séquentielle les activités au sein d'un dictionnaire par journées.
+
+        Le quota maximum appliqué ici est fixé à 3 activités par jour.
+
+        Args:
+            activites (list[dict]): Liste ordonnée des activités retenues.
+
+        Returns:
+            dict[int, list[dict]]: dictionnaire indexant chaque journée.
+        """
         planning = {}
         for i in range(len(activites)):
             jour = i // 3
@@ -60,7 +95,16 @@ class ModeleVoyage:
         return planning
 
     def liste_planning(self, planning):
-        # Reconstruit une liste à plat depuis le dictionnaire de planning
+        """Transforme le dictionnaire de planning en une liste linéaire d'activités.
+
+        Utile pour réinjecter les données modifiées après un réagencement manuel.
+
+        Args:
+            planning (dict[int, list[dict]]): Dictionnaire représentatif du planning actuel.
+
+        Returns:
+            list[dict]: Liste brute d'activités ordonnées chronologiquement selon l'index des jours.
+        """
         liste = []
         jours_ordonnes = sorted(planning.keys())
         for j in jours_ordonnes:
@@ -69,6 +113,15 @@ class ModeleVoyage:
         return liste
 
     def calculer_itineraire(self):
+        """Génère la structure détaillée du carnet de route final.
+
+        Calcule dynamiquement les distances réelles et estime le temps de trajet à pied (sur une base moyenne standard de 5 km/h) entre chaque activité et l'hôtel.
+
+        Returns:
+            list[dict]: Liste d'étapes décrivant le déroulement du séjour.
+            Chaque élément possède les clés : "jour", "txt" (libellé de l'action/activité)
+            et "transit" (kilométrage et durée estimée).
+        """
         itineraire = []
 
         if self.train_aller:
@@ -116,6 +169,3 @@ class ModeleVoyage:
             itineraire.append({"jour": "Retour", "txt": f"Retour vers {self.ville_dep}", "transit": ""})
 
         return itineraire
-
-
-  
