@@ -89,3 +89,22 @@ class Train:
         """convertit la durée donnée par l'API en heure ah bmin"""
         h, m = divmod(secondes // 60, 60)
         return f"{h}h{m:02d}"    
+
+    def trouver_code_gare(self, nombre_ciudad):
+        url = f"https://api.sncf.com/v1/coverage/sncf/places?q={quote(nombre_ciudad)}&type[]=stop_area"
+        r = requests.get(url, auth=(API_KEY, ""))
+        if r.status_code == 200:
+            datos = r.json()
+            if "places" in datos and len(datos["places"]) > 0:
+                return datos["places"][0]["id"]
+        return None
+
+    def trouver_index_rapide(self, liste_trains):
+        # Cherche le train le plus rapide et retourne son index dans la liste
+        if len(liste_trains) == 0:
+            return -1
+        idx_rapide = 0
+        for i in range(len(liste_trains)):
+            if liste_trains[i]["duree_sec"] < liste_trains[idx_rapide]["duree_sec"]:
+                idx_rapide = i
+        return idx_rapide
