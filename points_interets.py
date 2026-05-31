@@ -29,7 +29,7 @@ class ModelePointsInteret:
             nom = lieu.get("name")
             if isinstance(nom, str):
                 hotels.append({"nom": nom, "lat": lieu.geometry.centroid.y, "lon": lieu.geometry.centroid.x})
-            return hotels
+        return hotels
 
     def chercher_activites(self, ville, categories_liste):
         '''
@@ -82,6 +82,5 @@ class ModelePointsInteret:
         return lat, lon   
     
         
-print(chercher_hotels(Paris))
     
         
