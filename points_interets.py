@@ -1,7 +1,7 @@
 import osmnx as ox
 from config import CATEGORIES_ACTIVITES
 
-class ModelePointsInteret:
+class PointsInteret:
 
     def chercher_hotels(self, ville):
         '''
