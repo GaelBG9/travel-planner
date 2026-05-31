@@ -1,7 +1,7 @@
 import math
 
 
-class ModeleVoyage:
+class Voyage:
     """Modèle de données centralisant l'état et l'organisation logique du voyage.
 
     Contient les informations sélectionnées par l'utilisateur (trains, hôtel, activités) et contient les algorithmes de calcul de distances, d'optimisation de parcours et de génération d'itinéraires.
