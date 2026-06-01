@@ -26,14 +26,10 @@ git clone https://gitlab.insa-lyon.fr/projet-isn-[TON_GROUPE]/voyage-voyage.git 
 
 ```
 
-L'application a besoin de quelques librairies, lors de la premiere execution, dans un environnement virtuel executer :
+L'application a besoin de quelques librairies. Pour installer toutes les dépendances nécessaires, exécutez simplement la commande suivante dans votre terminal :
 
 ```bash
-pip install -r reqs.txt
-
-```
-
-*(Note : Les dépendances principales incluent `customtkinter`, `tkintermapview`, `osmnx`, `pandas`, `requests` et `Pillow`)*.
+pip install customtkinter tkintermapview requests pandas osmnx Pillow
 
 ### Exécution de l'application
 
