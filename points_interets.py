@@ -2,7 +2,10 @@ import osmnx as ox
 from config import CATEGORIES_ACTIVITES
 
 class PointsInteret:
-
+"""
+    Classe gérant l'extraction de données géospatiales (hôtels, activités) via OSMnx.
+    Fonctionne en interrogeant directement la base OpenStreetMap, ne garde aucune donnée.
+    """
     def chercher_hotels(self, ville):
         '''
         Recherche les hôtels d'une ville à travers OpenStreetMap.
@@ -32,8 +35,9 @@ class PointsInteret:
         return hotels
 
     def chercher_activites(self, ville, categories_liste):
-        '''
-        Recherche les activités d'une ville selon une liste de catégories.
+        """
+        Récupère jusqu'à 8 points d'intérêt (POI) géolocalisés via OSMnx pour chaque 
+        catégorie de tourisme ou de loisir sélectionnée par l'utilisateur.
 
         Parameters
         ----------
@@ -51,7 +55,7 @@ class PointsInteret:
                 - "lon" (float) : longitude du centroïde.
                 - "cat" (str)   : catégorie de l'activité.
 
-        '''
+        """
         activites = []
         for categorie in categories_liste:
             nom_categorie = CATEGORIES_ACTIVITES.get(categorie)
