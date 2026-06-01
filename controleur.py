@@ -38,7 +38,7 @@ class Controleur:
         self.voyage.ville_arr = v_arr
         self.voyage.categories_souhaitees = cats
 
-        jours_sur_place = (dt_ret - dt_all).days + 1
+        jours_sur_place = (dt_ret - dt_all).days
         self.voyage.max_activites = jours_sur_place * 3
 
         self.vue.afficher_chargement("Connexion à l'API SNCF...")
