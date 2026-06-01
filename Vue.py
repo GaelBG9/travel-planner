@@ -40,7 +40,7 @@ CATEGORIES_ACTIVITES = {
     "Monuments":           {"tourism": ["attraction", "viewpoint", "monument"]},
     "Parcs & Loisirs":     {"leisure": ["park", "garden", "theme_park"]},
     "Gastronomie":         {"amenity": ["restaurant", "cafe"]}
-
+}
 
 ETAPES = ["Recherche", "Trains", "Hôtel", "Activités", "Planning", "Carnet"]
 
