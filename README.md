@@ -19,12 +19,13 @@ Les lieux et les hôtels sont sélectionnés à partir des données d’OpenStre
 
 **Installation:**
 
-Cloner le dépôt : Sur linux :
+Cloner le dépôt :
 
 ```bash
-git clone https://gitlab.insa-lyon.fr/projet-isn-[TON_GROUPE]/voyage-voyage.git && cd voyage-voyage
+git clone git@gitlab.insa-lyon.fr:radelgadoca/projet-isn-agence-de-voyage.git && cd voyage-voyage
 
 ```
+Ou plus simplement telecharger le dossier et le décompresser.
 
 L'application a besoin de quelques librairies. Pour installer toutes les dépendances nécessaires, exécutez simplement la commande suivante dans votre terminal :
 
