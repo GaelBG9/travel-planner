@@ -1,3 +1,11 @@
+from PIL import Image, ImageTk
+import os
+import random
+
+import customtkinter as ctk
+import tkintermapview
+
+
 GARES = {"Paris": "", "Lyon": "", "Marseille": "", "Nice": "", "Bordeaux": "", "Strasbourg": "", "Lille": "", "Nantes": "", "Toulouse": "", "Montpellier": "", "Rennes": "", "Avignon": "", "Grenoble": "", "Angers": "", "Perpignan": ""}
 
 THEME = {
