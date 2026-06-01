@@ -19,13 +19,7 @@ Les lieux et les hôtels sont sélectionnés à partir des données d’OpenStre
 
 **Installation:**
 
-Cloner le dépôt :
-
-```bash
-git clone git@gitlab.insa-lyon.fr:radelgadoca/projet-isn-agence-de-voyage.git && cd voyage-voyage
-
-```
-Ou plus simplement telecharger le dossier et le décompresser.
+Il suffit de telecharger le dossier en zip et le décompresser.
 
 L'application a besoin de quelques librairies. Pour installer toutes les dépendances nécessaires, exécutez simplement la commande suivante dans votre terminal :
 
@@ -35,6 +29,15 @@ pip install customtkinter tkintermapview requests pandas osmnx Pillow
 ### Exécution de l'application
 
 Dans le dossier du projet, exécutez simplement `python main.py` et tout devrait fonctionner normalement.
+
+Cette application est fonctionnelle sur  Linux. Cependant, veuillez noter que CustomTkinter présente certaines limitations techniques sur cet environnement.
+
+Bien que la logique métier et les fonctionnalités restent intactes, cela peut entraîner :
+
+Des variations dans le rendu visuel des arrondis (corner_radius) des composants.
+
+Un aspect esthétique moins fidèle que sur Windows ou macOS.
+
 
 ```bash
 python main.py
@@ -77,4 +80,7 @@ python main.py
 ### Auteurs
 
 * Gaël Boënnec
-* [Nom de tes éventuels camarades de binôme/groupe]
+* .
+* .
+* .
+* .
