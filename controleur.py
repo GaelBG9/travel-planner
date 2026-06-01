@@ -1,3 +1,5 @@
+from datetime import datetime
+
 from class_train import Train
 from points_interets import PointsInteret
 from classe_voyage import Voyage
