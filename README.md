@@ -45,7 +45,9 @@ Bien que la logique et les fonctionnalités restent intactes, cela peut entraîn
 python main.py
 
 ```
-### Déblocage de bugs potentiels ou latence 
+### Latence et bugs potentiels :
+Des latences ou bugs peuvent intervenir surtout dans les pages de recherche d'hotels et de recherche d'activités.  
+
 En cas de légers bugs ou de latence supérieure à une durée d'une minute il peut être nécessaire et recommandé de Restart Kernel (En) ou Redemarrer le noyau (Fr). Pour cela, il faut aller dans la partie Consoles de Spyder.
 ### Instructions:
 
