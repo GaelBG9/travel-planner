@@ -213,8 +213,8 @@ class Vue(ctk.CTk):
             card_img.pack(side="left", expand=True, fill="both", padx=10)
             card_img.pack_propagate(False)
 
-            if os.path.exists(ville + ".jpg"):
-                photo = Image.open(photos/ville + ".jpg")
+            if os.path.exists("photos/"+ville + ".jpg"):
+                photo = Image.open("photos/"ville + ".jpg")
                 photo = photo.resize((280, 150))
                 photo_ctk = ctk.CTkImage(light_image=photo, size=(350, 200))
                 lbl_photo = ctk.CTkLabel(card_img, image=photo_ctk, text="")
