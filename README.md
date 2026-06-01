@@ -54,7 +54,7 @@ python main.py
 
 **Fenêtre des Trains :**
 
-* Dans cette fenêtre, l'utilisateur voit les 5 meilleurs trajets trouvés. Le trajet le plus court est mis en évidence (⚡ RAPIDE).
+* Dans cette fenêtre, l'utilisateur voit les 5 meilleurs trajets trouvés. Le trajet le plus court est mis en évidence.
 * L'utilisateur doit choisir un trajet aller et un trajet retour, puis valider.
 
 **Fenêtre de la carte (Hébergement) :**
@@ -79,8 +79,8 @@ python main.py
 
 ### Auteurs
 
-* Gaël Boënnec
-* .
-* .
-* .
-* .
+* Boënnec Gaël 
+* Alduy Mathis 
+* Diop Mame Diarra 
+* Vernay Frecon Leila
+* Delgado Carrero Renata 
