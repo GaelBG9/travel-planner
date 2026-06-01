@@ -1,5 +1,11 @@
 import math
 
+CATEGORIES_ACTIVITES = {
+    "Culture (Musées...)": {"tourism": ["museum", "artwork", "gallery"]},
+    "Monuments":           {"tourism": ["attraction", "viewpoint", "monument"]},
+    "Parcs & Loisirs":     {"leisure": ["park", "garden", "theme_park"]},
+    "Gastronomie":         {"amenity": ["restaurant", "cafe"]}
+}
 
 class Voyage:
      """
