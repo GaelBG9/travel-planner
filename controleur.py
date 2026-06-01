@@ -1,6 +1,6 @@
-from class_train import ModeleTrain
-from points_interets import ModelePointsInteret
-from classe_voyage import ModeleVoyage
+from class_train import Train
+from points_interets import PointsInteret
+from classe_voyage import Voyage
 from Vue import Vue
 
 class Controleur:
@@ -12,9 +12,9 @@ class Controleur:
         Instancie les différents modèles métiers (APIs, algorithmes, variables d'état) 
         et initialise l'interface graphique (Vue).
         """
-        self.mod_train = ModeleTrain()
-        self.mod_poi = ModelePointsInteret()
-        self.voyage = ModeleVoyage()
+        self.mod_train = Train()
+        self.mod_poi = PointsInteret()
+        self.voyage = Voyage()
         self.vue = Vue(self)
         self.activites_temporaires = []
         self.planning_actuel = {}
