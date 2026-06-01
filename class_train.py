@@ -17,7 +17,7 @@ class Train:
     Classe gérant les interactions avec l'API SNCF pour la recherche d'itinéraires ferroviaires.
     Elle ne comporte pas de init vu qu'elle ne garde aucune information.
     """   
-    def chercher_trajets(self,origine,destination,date,heure):
+     def chercher_trajets(self,origine,destination,date,heure):
         """renvoie une liste contenant 5 trajets possibles avec le lieu de départ, d'arrivée, la durée et le type de train.
         Si il n'existe aucun train, il renvoie None
         Formatage date/heure : AAAAMMJJTHHMMSS"""
@@ -66,7 +66,7 @@ class Train:
                 
                 
             
-    def formater_heure(self, chaine):
+     def formater_heure(self, chaine):
         """
         Extrait et formate l'heure au format 'HH:MM' à partir de la chaîne temporelle
         brute renvoyée par l'API SNCF (par exemple : '20261025T083000' devient '08:30').
@@ -76,12 +76,12 @@ class Train:
         else:
             return "--:--"
 
-    def formater_duree(self, secondes):
+     def formater_duree(self, secondes):
         """convertit la durée donnée par l'API en heure ah bmin"""
         h, m = divmod(secondes // 60, 60)
         return f"{h}h{m:02d}"    
 
-    def trouver_code_gare(self, nombre_ciudad):
+     def trouver_code_gare(self, nombre_ciudad):
         """
         Effectue une requête à l'API SNCF pour trouver l'identifiant unique 
         (de type zone administrative) correspondant au nom d'une ville saisie par l'utilisateur.
