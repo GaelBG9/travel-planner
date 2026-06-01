@@ -6,6 +6,7 @@ import customtkinter as ctk
 import tkintermapview
 from datetime import datetime
 
+ctk.set_appearance_mode("light")
 
 GARES = {"Paris": "", "Lyon": "", "Marseille": "", "Nice": "", "Bordeaux": "", "Strasbourg": "", "Lille": "", "Nantes": "", "Toulouse": "", "Montpellier": "", "Rennes": "", "Avignon": "", "Grenoble": "", "Angers": "", "Perpignan": ""}
 
