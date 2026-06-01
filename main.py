@@ -17,9 +17,8 @@ from PIL import Image, ImageTk
 import os
 import random
 
-
-
 from controleur.py import Controleur
+
 
 if __name__ == "__main__":
     Controleur().lancer()
