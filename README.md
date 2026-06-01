@@ -30,7 +30,7 @@ L'application a besoin de quelques librairies. Pour installer toutes les dépend
 
 ```bash
 pip install customtkinter tkintermapview requests pandas osmnx Pillow
-
+```
 ### Exécution de l'application
 
 Dans le dossier du projet, exécutez simplement `python main.py` et tout devrait fonctionner normalement.
