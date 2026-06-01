@@ -189,4 +189,3 @@ class Controleur:
 
         self.lancer_recherche_trains(v_dep, v_arr, d_all, h_all, d_ret, h_ret, cats, dt_all, dt_ret)
         
-ETAPES = ["Recherche", "Trains", "Hôtel", "Activités", "Planning", "Carnet"]
