@@ -2,7 +2,7 @@ import osmnx as ox
 from config import CATEGORIES_ACTIVITES
 
 class PointsInteret:
-"""
+    """
     Classe gérant l'extraction de données géospatiales (hôtels, activités) via OSMnx.
     Fonctionne en interrogeant directement la base OpenStreetMap, ne garde aucune donnée.
     """
