@@ -6,6 +6,8 @@
 @author: lvernayfrecon
 """
 
+API_KEY = "bea16a42-8800-43ba-8725-673b558b99ec"
+
 class Train:
      """
     Classe gérant les interactions avec l'API SNCF pour la recherche d'itinéraires ferroviaires.
