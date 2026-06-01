@@ -4,23 +4,7 @@ ctk.set_appearance_mode("light")
 
 API_KEY = "bea16a42-8800-43ba-8725-673b558b99ec"
 
-STATIONS = {
-    "Paris":       "stop_area:SNCF:87686006",
-    "Lyon":        "stop_area:SNCF:87723197",
-    "Marseille":   "stop_area:SNCF:87751008",
-    "Nice":        "stop_area:SNCF:87756056",
-    "Bordeaux":    "stop_area:SNCF:87581009",
-    "Strasbourg":  "stop_area:SNCF:87212027",
-    "Lille":       "stop_area:SNCF:87286005",
-    "Nantes":      "stop_area:SNCF:87481002",
-    "Toulouse":    "stop_area:SNCF:87611004",
-    "Montpellier": "stop_area:SNCF:87773002",
-    "Rennes":      "stop_area:SNCF:87471003",
-    "Avignon":     "stop_area:SNCF:87318964",
-    "Grenoble":    "stop_area:SNCF:87747006",
-    "Angers":      "stop_area:SNCF:87484006",
-    "Perpignan":   "stop_area:SNCF:87784009",
-}
+GARES = {"Paris": "", "Lyon": "", "Marseille": "", "Nice": "", "Bordeaux": "", "Strasbourg": "", "Lille": "", "Nantes": "", "Toulouse": "", "Montpellier": "", "Rennes": "", "Avignon": "", "Grenoble": "", "Angers": "", "Perpignan": ""}
 
 THEME = {
     "couleurs": {
