@@ -5,30 +5,12 @@
 
 @author: lvernayfrecon
 """
-import requests
-
-API_KEY = "bea16a42-8800-43ba-8725-673b558b99ec"
-
-STATIONS = {
-    "Paris":       "stop_area:SNCF:87686006",
-    "Marseille":   "stop_area:SNCF:87751008",
-    "Nice":        "stop_area:SNCF:87756056",
-    "Bordeaux":    "stop_area:SNCF:87581009",
-    "Strasbourg":  "stop_area:SNCF:87212027",
-    "Lille":       "stop_area:SNCF:87286005",
-    "Nantes":      "stop_area:SNCF:87481002",
-    "Toulouse":    "stop_area:SNCF:87611004",
-    "Montpellier": "stop_area:SNCF:87773002",
-    "Rennes":      "stop_area:SNCF:87471003",
-    "Avignon":     "stop_area:SNCF:87318964",
-    "Grenoble":    "stop_area:SNCF:87747006",
-    "Angers":      "stop_area:SNCF:87484006",
-    "Perpignan":   "stop_area:SNCF:87784009",
-    
-}
 
 class Train:
-        
+     """
+    Classe gérant les interactions avec l'API SNCF pour la recherche d'itinéraires ferroviaires.
+    Elle ne comporte pas de init vu qu'elle ne garde aucune information.
+    """   
     def chercher_trajets(self,origine,destination,date,heure):
         """renvoie une liste contenant 5 trajets possibles avec le lieu de départ, d'arrivée, la durée et le type de train.
         Si il n'existe aucun train, il renvoie None
@@ -79,7 +61,10 @@ class Train:
                 
             
     def formater_heure(self, chaine):
-        """convertit l'heure donnée par l'API en heure xh ymin"""
+        """
+        Extrait et formate l'heure au format 'HH:MM' à partir de la chaîne temporelle
+        brute renvoyée par l'API SNCF (par exemple : '20261025T083000' devient '08:30').
+        """
         if len(chaine) >= 13:
             return f"{chaine[9:11]}:{chaine[11:13]}"
         else:
@@ -91,6 +76,10 @@ class Train:
         return f"{h}h{m:02d}"    
 
     def trouver_code_gare(self, nombre_ciudad):
+        """
+        Effectue une requête à l'API SNCF pour trouver l'identifiant unique 
+        (de type zone administrative) correspondant au nom d'une ville saisie par l'utilisateur.
+        """
         url = f"https://api.sncf.com/v1/coverage/sncf/places?q={quote(nombre_ciudad)}&type[]=stop_area"
         r = requests.get(url, auth=(API_KEY, ""))
         if r.status_code == 200:
@@ -100,7 +89,10 @@ class Train:
         return None
 
     def trouver_index_rapide(self, liste_trains):
-        # Cherche le train le plus rapide et retourne son index dans la liste
+        """
+        Parcourt une liste de dictionnaires représentant des trajets de train 
+        et retourne l'index de la liste correspondant au trajet ayant la durée la  plus courte.
+        """
         if len(liste_trains) == 0:
             return -1
         idx_rapide = 0
