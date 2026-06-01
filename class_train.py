@@ -87,7 +87,7 @@ class Train:
         Effectue une requête à l'API SNCF pour trouver l'identifiant unique 
         (de type zone administrative) correspondant au nom d'une ville saisie par l'utilisateur.
         """
-        url = f"https://api.sncf.com/v1/coverage/sncf/places?q={quote(nombre_ciudad)}&type[]=stop_area"
+        url = f"https://api.sncf.com/v1/coverage/sncf/places?q={quote(nombre_ciudad)}&type[]=administrative_region"
         r = requests.get(url, auth=(API_KEY, ""))
         if r.status_code == 200:
             datos = r.json()
