@@ -95,7 +95,7 @@ class Train:
                 return datos["places"][0]["id"]
         return None
 
-    def trouver_index_rapide(self, liste_trains):
+     def trouver_index_rapide(self, liste_trains):
         """
         Parcourt une liste de dictionnaires représentant des trajets de train 
         et retourne l'index de la liste correspondant au trajet ayant la durée la  plus courte.
