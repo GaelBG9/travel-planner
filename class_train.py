@@ -17,52 +17,53 @@ class Train:
     Classe gérant les interactions avec l'API SNCF pour la recherche d'itinéraires ferroviaires.
     Elle ne comporte pas de init vu qu'elle ne garde aucune information.
     """   
-     def chercher_trajets(self,origine,destination,date,heure):
-        """renvoie une liste contenant 5 trajets possibles avec le lieu de départ, d'arrivée, la durée et le type de train.
-        Si il n'existe aucun train, il renvoie None
-        Formatage date/heure : AAAAMMJJTHHMMSS"""
-        
-        dt_str = f"{date.replace('-', '')}T{heure.replace(':', '')}00"
-        
-        url = ("https://api.sncf.com/v1/coverage/sncf/journeys"
-            f"?from={STATIONS[origine]}"
-            f"&to={STATIONS[destination]}"
-            f"&datetime={dt_str}"
-            "&count=5")
-        
-        reponse = requests.get(url, auth=(API_KEY,""),timeout=10)
-        reponse.raise_for_status()
-        donnees = reponse.json
-        trajets_bruts = donnees.get("journeys",[])
-        
-        liste_trajets = []
-        for trajet in trajets_bruts:
-            
-            if trajet["nb_transfers"] == 0:
-                est_direct = True
-            else:
-                est_direct = False
-            
-            info_transfert = ""
-            
-            if not est_direct:
-                i = 0
-                sections = trajet.get("sections", [])
-                while sections[i].get("type") != "public_transport":
-                    i += 1
-                    
-                arret = sections[i].get("to", {})
-                info_transfert = arret["name"]
-                
-            liste_trajets.append({
-            "dep": self._formater_heure(trajet.get("departure_date_time", "")),
-            "arr": self._formater_heure(trajet.get("arrival_date_time", "")),
-            "duree": self._formater_duree(trajet.get("duration", 0)),
-            "type": trajet.get("sections", [{}])[0].get("display_informations", {}).get("commercial_mode", "TRAIN"),
-            "direct": est_direct,
-            "transfert": info_transfert})
-            
-        return liste_trajets
+     def chercher_trajets(self, origine, destination, date, heure):
+         """
+         Interroge l'API SNCF pour récupérer une liste de 5 trajets maximum entre deux gares.
+         Elle filtre les résultats pour identifier les correspondances et extraire les horaires.
+         Retourne une liste de dictionnaires contenant les données nettoyées du trajet.
+         """
+         id_dep =  self.trouver_code_gare(origine)
+         id_arr =  self.trouver_code_gare(destination)
+
+         if not id_dep or not id_arr:
+             return []
+
+         chaine_dt = date.replace("-", "") + "T" + heure.replace(":", "") + "00"
+         url = f"https://api.sncf.com/v1/coverage/sncf/journeys?from={quote(id_dep)}&to={quote(id_arr)}&datetime={chaine_dt}&count=5"
+
+         reponse = requests.get(url, auth=(API_KEY, ""), timeout=10)
+         reponse.raise_for_status()
+         donnees = reponse.json()
+         trajets_bruts = donnees.get("journeys", [])
+
+         resultats = []
+         for t in trajets_bruts:
+             sections_transport = []
+             for s in t.get("sections", []):
+                 if s.get("type") == "public_transport":
+                     sections_transport.append(s)
+
+             if len(sections_transport) == 0:
+                 continue
+
+             est_direct = len(sections_transport) == 1
+             info_correspondance = ""
+             if not est_direct:
+                 arret = sections_transport[0].get("to", {})
+                 info_correspondance = arret.get("display_informations", {}).get("label") or arret.get("name", "Correspondance")
+                 info_correspondance = info_correspondance.replace("Gare de ", "")
+
+             resultats.append({
+                 "dep":       self.formater_heure(t.get("departure_date_time", "")),
+                 "arr":       self.formater_heure(t.get("arrival_date_time", "")),
+                 "duree":     self.formater_duree(t.get("duration", 0)),
+                 "duree_sec": t.get("duration", 0),
+                 "type":      sections_transport[0].get("display_informations", {}).get("commercial_mode", "TRAIN"),
+                 "direct":    est_direct,
+                 "transfert": info_correspondance
+             })
+         return resultats
                 
                 
             
