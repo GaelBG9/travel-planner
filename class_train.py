@@ -6,6 +6,10 @@
 @author: lvernayfrecon
 """
 
+from urllib.parse import quote
+import requests
+
+
 API_KEY = "bea16a42-8800-43ba-8725-673b558b99ec"
 
 class Train:
