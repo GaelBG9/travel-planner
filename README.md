@@ -43,7 +43,8 @@ Un aspect esthétique moins fidèle que sur Windows ou macOS.
 python main.py
 
 ```
-
+### Déblocage de bugs potentiels ou latence 
+En cas de légers bugs ou de latence supérieure à une durée d'une minute il peut être nécessaire et recommandé de Restart Kernel (En) ou Redemarrer le noyau (Fr). Pour cela, il faut aller dans la partie Consoles de Spyder.
 ### Instructions:
 
 **Fenêtre de Configuration**
