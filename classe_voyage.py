@@ -7,7 +7,7 @@ class Voyage:
     Elle stocke les choix de l'utilisateur à mesure qu'il avance dans les étapes.
     """
 
-    def __init__(self):
+     def __init__(self):
         """Initialise l'ensemble des variables nécessaires au suivi du voyage."""
         self.ville_dep = "Paris"
         self.ville_arr = "Lyon"
@@ -20,7 +20,7 @@ class Voyage:
         self.lat_ville = 0
         self.lon_ville = 0
 
-    def calculer_distance(self, p1, p2):
+     def calculer_distance(self, p1, p2):
         """Calcule la distance à vol d'oiseau entre deux coordonnées GPS.
 
         Utilise la formule de Haversine pour prendre en compte la courbure terrestre.
@@ -41,7 +41,7 @@ class Voyage:
         a = math.sin(diff_lat / 2) ** 2 + math.cos(lat1) * math.cos(lat2) * math.sin(diff_lon / 2) ** 2
         return R * 2 * math.atan2(math.sqrt(a), math.sqrt(1 - a))
 
-    def optimiser_parcours(self, liste_activites):
+     def optimiser_parcours(self, liste_activites):
         """Trie et réorganise une liste d'activités selon la proximité géographique.
 
         Applique la méthode heuristique du "voisin le plus proche" à partir de l'adresse de l'hôtel pour réduire le temps global de transport.
@@ -75,7 +75,7 @@ class Voyage:
 
         return triees
 
-    def construire_planning(self, activites):
+     def construire_planning(self, activites):
         """Répartit de façon séquentielle les activités au sein d'un dictionnaire par journées.
 
         Le quota maximum appliqué ici est fixé à 3 activités par jour.
@@ -94,7 +94,7 @@ class Voyage:
             planning[jour].append(activites[i])
         return planning
 
-    def liste_planning(self, planning):
+     def liste_planning(self, planning):
         """Transforme le dictionnaire de planning en une liste linéaire d'activités.
 
         Utile pour réinjecter les données modifiées après un réagencement manuel.
@@ -112,7 +112,7 @@ class Voyage:
                 liste.append(act)
         return liste
 
-    def calculer_itineraire(self):
+     def calculer_itineraire(self):
         """Génère la structure détaillée du carnet de route final.
 
         Calcule dynamiquement les distances réelles et estime le temps de trajet à pied (sur une base moyenne standard de 5 km/h) entre chaque activité et l'hôtel.
