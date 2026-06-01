@@ -30,13 +30,15 @@ pip install customtkinter tkintermapview requests pandas osmnx Pillow
 
 Dans le dossier du projet, exécutez simplement `python main.py` et tout devrait fonctionner normalement.
 
+### Compatibilité
+
 Cette application est fonctionnelle sur  Linux. Cependant, veuillez noter que CustomTkinter présente certaines limitations techniques sur cet environnement.
 
-Bien que la logique métier et les fonctionnalités restent intactes, cela peut entraîner :
+Bien que la logique et les fonctionnalités restent intactes, cela peut entraîner :
 
-Des variations dans le rendu visuel des arrondis (corner_radius) des composants.
-
-Un aspect esthétique moins fidèle que sur Windows ou macOS.
+- Des variations dans le rendu visuel des arrondis (corner_radius) des composants.
+- Une police differente à la prévue
+- Un aspect esthétique moins fidèle que sur Windows ou macOS.
 
 
 ```bash
