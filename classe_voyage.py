@@ -2,9 +2,9 @@ import math
 
 
 class Voyage:
-    """Modèle de données centralisant l'état et l'organisation logique du voyage.
-
-    Contient les informations sélectionnées par l'utilisateur (trains, hôtel, activités) et contient les algorithmes de calcul de distances, d'optimisation de parcours et de génération d'itinéraires.
+     """
+    Classe représentant l'état global du voyage planifié. 
+    Elle stocke les choix de l'utilisateur à mesure qu'il avance dans les étapes.
     """
 
     def __init__(self):
