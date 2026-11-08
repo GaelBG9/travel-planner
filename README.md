@@ -1,91 +1,72 @@
-# Projet ISN S4 - VOYAGE VOYAGE
+# ISN S4 Project - VOYAGE VOYAGE
 
-### Description
+## Description
+This project allows users to plan a complete train trip and create optimized itineraries to visit places once at the destination. The visiting order is defined to minimize the walking distance between successive locations.
 
-Ce projet permet de planifier un voyage complet en train et de créer des itinéraires optimisés pour visiter des lieux une fois sur place. L’ordre de visite est défini de manière à minimiser la distance de marche entre les lieux successifs.
+The user enters:
+- a departure city and an arrival city (in France),
+- a departure date and time, as well as a return date and time,
+- the categories of places they wish to visit (Museums, Parks, Monuments, Gastronomy),
+- and the accommodation of their choice.
 
-L'utilisateur saisit :
+The algorithm first queries the SNCF API to suggest the best train routes. Then, it generates a daily itinerary whose starting and ending point is the hotel provided by the user. Each day includes a maximum of 3 places to visit, ordered to minimize distances using a nearest neighbor algorithm.
 
-* une ville de départ et une ville d'arrivée (en France),
-* une date et heure d'aller, ainsi qu'une date et heure de retour,
-* les catégories de lieux qu’il souhaite visiter (Musées, Parcs, Monuments, Gastronomie),
-* ainsi que l’hébergement de son choix.
+Places and hotels are selected using OpenStreetMap data via the osmnx library, guaranteeing real coordinates.
 
-L’algorithme interroge d'abord l'API SNCF pour proposer les meilleurs trajets ferroviaires. Ensuite, il génère un itinéraire quotidien dont le point de départ et d’arrivée est l’hôtel fourni par l’utilisateur. Chaque jour comprend un maximum de 3 lieux à visiter, ordonnés pour minimiser les distances via un algorithme du plus proche voisin.
+## Getting Started
 
-Les lieux et les hôtels sont sélectionnés à partir des données d’OpenStreetMap via la bibliothèque `osmnx`, garantissant des coordonnées réelles.
-
-### Mise en route
-
-**Installation:**
-
-Il suffit de telecharger le dossier en zip et le décompresser.
-
-L'application a besoin de quelques librairies. Pour installer toutes les dépendances nécessaires, exécutez simplement la commande suivante dans votre terminal :
+### Installation:
+Simply download the zip folder and extract it.
+The application requires a few libraries. To install all necessary dependencies, simply run the following command in your terminal:
 
 ```bash
 pip install customtkinter tkintermapview requests pandas osmnx Pillow
 ```
-### Exécution de l'application
 
-Dans le dossier du projet, exécutez simplement `python main.py` et tout devrait fonctionner normalement.
+### Running the application
+In the project folder, simply run `python main.py` and everything should work normally.
 
-### Compatibilité
-
-Cette application est fonctionnelle sur  Linux. Cependant, veuillez noter que CustomTkinter présente certaines limitations techniques sur cet environnement.
-
-Bien que la logique et les fonctionnalités restent intactes, cela peut entraîner :
-
-- Des variations dans le rendu visuel des arrondis (corner_radius) des composants.
-- Une police differente à la prévue
-- Un aspect esthétique moins fidèle que sur Windows ou macOS.
-
+## Compatibility
+This application works on Linux. However, please note that CustomTkinter has certain technical limitations on this environment.
+Although the logic and features remain intact, this may cause:
+- Variations in the visual rendering of component corner radii (corner_radius).
+- A different font than expected.
+- A less accurate aesthetic appearance than on Windows or macOS.
 
 ```bash
 python main.py
-
 ```
-### Latence et bugs potentiels :
-Des latences ou bugs peuvent intervenir surtout dans les pages de recherche d'hotels et de recherche d'activités.  
 
-En cas de légers bugs ou de latence supérieure à une durée d'une minute il peut être nécessaire et recommandé de Restart Kernel (En) ou Redemarrer le noyau (Fr). Pour cela, il faut aller dans la partie Consoles de Spyder.
-### Instructions:
+## Latency and potential bugs:
+Latency or bugs may occur, especially on the hotel search and activity search pages.
+In case of minor bugs or latency exceeding one minute, it may be necessary and recommended to Restart Kernel (En) or Redemarrer le noyau (Fr). To do this, go to the Consoles section in Spyder.
 
-**Fenêtre de Configuration**
+## Instructions:
 
-* L'utilisateur indique la ville de départ et d'arrivée - (IMPORTANT : en raison de l'utilisation de l'API SNCF, il doit s'agir de villes françaises desservies par le réseau).
-* L'utilisateur saisit également les dates et heures, et coche les catégories souhaitées.
-* Une fois toutes les étapes effectuées, pour passer à l'étape suivante, l'utilisateur clique sur « Rechercher Itinéraires ».
+### Configuration Window
+- The user inputs the departure and arrival city - (IMPORTANT: due to the use of the SNCF API, these must be French cities served by the network).
+- The user also inputs the dates and times, and checks the desired categories.
+- Once all steps are completed, to move to the next step, the user clicks "Rechercher Itinéraires".
 
-**Fenêtre des Trains :**
+### Train Window:
+- In this window, the user sees the top 5 routes found. The shortest route is highlighted.
+- The user must select an outbound and return journey, then validate.
 
-* Dans cette fenêtre, l'utilisateur voit les 5 meilleurs trajets trouvés. Le trajet le plus court est mis en évidence.
-* L'utilisateur doit choisir un trajet aller et un trajet retour, puis valider.
+### Map Window (Accommodation):
+- Accommodations will be suggested in a grid format. Due to osmnx limitations, some minor accommodations may not be present.
+- The user clicks "Réserver" under the hotel of their choice to proceed.
 
-**Fenêtre de la carte (Hébergement) :**
+### Activity Selection Window:
+- The user can check the activities they actually want to do. A counter limits the selection to 3 activities per day on site (calculated based on train dates).
+- Once the selection is complete, they click "Planifier mes journées".
 
-* Des hébergements lui seront proposés sous forme de grille. En raison des limitations d'osmnx, certains hébergements mineurs peuvent ne pas être présents.
-* L'utilisateur clique sur « Réserver » sous l'hôtel de son choix pour passer à la suite.
+### Planning Window:
+- The optimized itinerary is displayed day by day.
+- If the order is not suitable, the user can click the "⇄ Échanger" button between two different activities to manually modify the schedule.
+- To conclude, they click "Générer le Carnet".
 
-**Fenêtre de Sélection des Activités :**
+### Roadbook Window:
+- The program displays the final interactive map with numbered markers and a text summary on the right, including estimated walking times between each step.
 
-* L'utilisateur peut cocher les activités qu'il souhaite réellement faire. Un compteur limite la sélection à 3 activités par jour sur place (calculé selon les dates de train).
-* Une fois la sélection terminée, il clique sur « Planifier mes journées ».
-
-**Fenêtre de Planification :**
-
-* L'itinéraire optimisé est affiché jour par jour.
-* Si l'ordre ne convient pas, l'utilisateur peut cliquer sur le bouton « ⇄ Échanger » de deux activités différentes pour modifier manuellement le planning.
-* Pour conclure, il clique sur « Générer le Carnet ».
-
-**Fenêtre du Carnet de Route :**
-
-* Le programme affiche la carte finale interactive avec les marqueurs numérotés et un résumé textuel à droite incluant les estimations de temps de marche entre chaque étape.
-
-### Auteurs
-
-* Boënnec Gaël 
-* Alduy Mathis 
-* Diop Mame Diarra 
-* Vernay Frecon Leila
-* Delgado Carrero Renata 
+## Authors
+- Boënnec Gaël
