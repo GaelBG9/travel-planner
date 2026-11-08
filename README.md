@@ -69,4 +69,8 @@ In case of minor bugs or latency exceeding one minute, it may be necessary and r
 - The program displays the final interactive map with numbered markers and a text summary on the right, including estimated walking times between each step.
 
 ## Authors
-- Boënnec Gaël
+- Boënnec Gaël (75%)
+- Alduy Mathis (10%)
+- Diop Mame Diarra (5%)
+- Vernay Frecon Leila (5%)
+- Delgado Carrero Renata (5%)
